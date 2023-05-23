@@ -7,19 +7,27 @@ const Modal = ({ onClose, largeImageURL }) => {
 
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
-        onClose();
+       return onClose();
+      }
+    };
+
+    const handleClickAway = e => {
+      if (e.target.className.includes('Modal_overlay')) {
+        return onClose();
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('click', handleClickAway);
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown); 
+      window.removeEventListener('click', handleClickAway);
     };
-  }, [onClose]);
+  },);
 
   return (
-    <div className={sty.overlay} onClick={onClose}>
+    <div className={sty.overlay}>
       <div className={sty.modal}>
         <img className={sty.modal__image} src={largeImageURL} alt="" />
       </div>
