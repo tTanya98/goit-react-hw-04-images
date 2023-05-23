@@ -40,7 +40,7 @@ const App = () => {
     setPage(1);
   };
 
-  const handleLoadMore = () => { 
+  const onClick = () => { 
     setPage(prevState => prevState + 1);
   };
 
@@ -95,7 +95,7 @@ const App = () => {
       </Section>
 
       {page < lastPage && !isLoading ? (
-        <ButtonLoadMore label="Load more" handleLoadMore={handleLoadMore} />
+        <ButtonLoadMore label="Load more" onClick={onClick} />
       ) : (
         <div style={{ height: 40 }}></div>
       )}
